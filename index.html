@@ -27,6 +27,52 @@
             background-color: #f4f4f4;
             color: #333;
             overflow-x: hidden; /* Gorizontal skrollni oldini oladi */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .site-header {
+            background-color: #2a2a2a;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .main-nav {
+            background-color: #333;
+        }
+
+        body.dark-mode .product-card {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .filters-sidebar {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .cart-sidebar, 
+        body.dark-mode .wishlist-sidebar {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .modal-content {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .mobile-bottom-nav {
+            background-color: #2a2a2a;
+        }
+
+        body.dark-mode .compare-bar {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
         }
 
         /* Loading Screen */
@@ -45,6 +91,10 @@
             transition: opacity 0.5s ease-out;
         }
 
+        body.dark-mode .loader-container {
+            background-color: #1a1a1a;
+        }
+
         .loader-container.hidden {
             opacity: 0;
             pointer-events: none;
@@ -59,9 +109,43 @@
             animation: spin 1s linear infinite;
         }
 
+        .loader-text {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #8a2be2;
+            animation: pulse 1.5s infinite;
+        }
+
+        .loader-progress {
+            width: 200px;
+            height: 4px;
+            background-color: #f0f0f0;
+            border-radius: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .loader-progress-bar {
+            height: 100%;
+            background-color: #8a2be2;
+            width: 0%;
+            animation: progress 2s ease-out forwards;
+        }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
 
         /* Header */
@@ -84,6 +168,12 @@
         .logo h1 {
             color: #8a2be2;
             font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 i {
+            margin-right: 10px;
         }
 
         .user-actions {
@@ -118,12 +208,52 @@
             color: #888;
         }
 
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        body.dark-mode .search-suggestions {
+            background-color: #333;
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        body.dark-mode .suggestion-item:hover {
+            background-color: #444;
+        }
+
         .action-icon {
             position: relative;
             cursor: pointer;
             font-size: 1.5rem;
             color: #333;
             transition: color 0.3s;
+        }
+
+        body.dark-mode .action-icon {
+            color: #e0e0e0;
         }
 
         .action-icon:hover {
@@ -162,6 +292,10 @@
             padding-bottom: 5px;
         }
 
+        body.dark-mode .main-nav a {
+            color: #e0e0e0;
+        }
+
         .main-nav a.active, .main-nav a:hover {
             color: #8a2be2;
             border-bottom: 2px solid #8a2be2;
@@ -183,6 +317,24 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content h2 {
@@ -206,6 +358,7 @@
             font-weight: 600;
             transition: background-color 0.3s, transform 0.3s;
             animation: fadeIn 1.5s ease-out;
+            display: inline-block;
         }
 
         .cta-button:hover {
@@ -249,6 +402,10 @@
             color: #555;
         }
 
+        body.dark-mode .filter-group label {
+            color: #e0e0e0;
+        }
+
         .filter-group select,
         .filter-group input {
             width: 100%;
@@ -256,6 +413,15 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .filter-group select,
+        body.dark-mode .filter-group input {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
         }
 
         .filter-tags {
@@ -272,6 +438,11 @@
             font-size: 0.85rem;
             cursor: pointer;
             transition: background-color 0.3s;
+        }
+
+        body.dark-mode .filter-tag {
+            background-color: #444;
+            color: #e0e0e0;
         }
 
         .filter-tag:hover, .filter-tag.active {
@@ -305,6 +476,14 @@
             padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .sort-options select {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
         }
 
         .view-options {
@@ -318,34 +497,44 @@
             background: #fff;
             cursor: pointer;
             border-radius: 5px;
+            color: #333;
+        }
+
+        body.dark-mode .view-option {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
         }
 
         .view-option.active {
             background-color: #8a2be2;
             color: white;
+            border-color: #8a2be2;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
         }
 
         .product-card {
             background: #fff;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             cursor: pointer;
             position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .product-badge {
@@ -394,18 +583,75 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            color: #333;
+        }
+
+        body.dark-mode .action-btn {
+            background-color: #333;
+            color: #e0e0e0;
         }
 
         .action-btn:hover {
             background-color: #8a2be2;
             color: white;
+            transform: scale(1.1);
+        }
+
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
         }
 
         .product-card img {
             width: 100%;
-            height: 220px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-video-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(138, 43, 226, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .product-video-btn {
+            opacity: 1;
+        }
+
+        .product-quick-view {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(138, 43, 226, 0.9);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            transition: bottom 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover .product-quick-view {
+            bottom: 0;
         }
 
         .product-info {
@@ -419,6 +665,10 @@
             font-size: 0.8rem;
             color: #888;
             margin-bottom: 5px;
+        }
+
+        body.dark-mode .product-category {
+            color: #aaa;
         }
 
         .product-info h3 {
@@ -441,6 +691,10 @@
         .rating-count {
             font-size: 0.85rem;
             color: #888;
+        }
+
+        body.dark-mode .rating-count {
+            color: #aaa;
         }
 
         .product-info .price {
@@ -474,19 +728,71 @@
             color: #e74c3c;
         }
 
-        .add-to-cart-btn {
+        .product-actions-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .add-to-cart-btn, .quick-buy-btn, .stock-notify-btn {
+            flex: 1;
             background-color: #f0f0f0;
             border: none;
             padding: 10px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            transition: background-color 0.3s, color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+
+        body.dark-mode .add-to-cart-btn, 
+        body.dark-mode .quick-buy-btn, 
+        body.dark-mode .stock-notify-btn {
+            background-color: #333;
+            color: #e0e0e0;
+        }
+
+        .quick-buy-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .stock-notify-btn {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .add-to-cart-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(138, 43, 226, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .add-to-cart-btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .add-to-cart-btn:hover {
             background-color: #8a2be2;
             color: white;
+        }
+
+        .quick-buy-btn:hover {
+            background-color: #27ae60;
+        }
+
+        .stock-notify-btn:hover {
+            background-color: #e67e22;
         }
 
         /* Product Modal */
@@ -638,6 +944,10 @@
             margin-bottom: 5px;
         }
 
+        body.dark-mode .modal-category {
+            color: #aaa;
+        }
+
         .modal-details h2 {
             margin-bottom: 10px;
         }
@@ -659,6 +969,10 @@
             margin-bottom: 25px;
             line-height: 1.6;
             color: #555;
+        }
+
+        body.dark-mode .modal-description {
+            color: #ccc;
         }
 
         .product-options {
@@ -686,6 +1000,14 @@
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .option-value {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
         }
 
         .option-value:hover {
@@ -715,10 +1037,21 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.3s;
+            color: #333;
+        }
+
+        body.dark-mode .quantity-btn {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
         }
 
         .quantity-btn:hover {
             background-color: #f0f0f0;
+        }
+
+        body.dark-mode .quantity-btn:hover {
+            background-color: #444;
         }
 
         .quantity-input {
@@ -728,6 +1061,14 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             margin: 0 10px;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .quantity-input {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
         }
 
         .modal-actions {
@@ -753,6 +1094,12 @@
             cursor: pointer;
             font-weight: 600;
             transition: background-color 0.3s, color 0.3s;
+            color: #333;
+        }
+
+        body.dark-mode .modal-actions .add-to-wishlist-btn {
+            background-color: #333;
+            color: #e0e0e0;
         }
 
         .modal-actions .add-to-wishlist-btn:hover {
@@ -785,12 +1132,19 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            color: #333;
+        }
+
+        body.dark-mode .share-icon {
+            background-color: #333;
+            color: #e0e0e0;
         }
 
         .share-icon:hover {
             background-color: #8a2be2;
             color: white;
+            transform: scale(1.1);
         }
 
         /* Shopping Cart Sidebar */
@@ -820,11 +1174,20 @@
             border-bottom: 1px solid #eee;
         }
 
+        body.dark-mode .cart-header {
+            border-bottom-color: #444;
+        }
+
         .cart-close {
             font-size: 1.5rem;
             background: none;
             border: none;
             cursor: pointer;
+            color: #333;
+        }
+
+        body.dark-mode .cart-close {
+            color: #e0e0e0;
         }
 
         .cart-items {
@@ -839,6 +1202,16 @@
             margin-bottom: 20px;
             padding-bottom: 20px;
             border-bottom: 1px solid #f0f0f0;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        body.dark-mode .cart-item {
+            border-bottom-color: #444;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .cart-item img {
@@ -878,6 +1251,13 @@
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
+            color: #333;
+        }
+
+        body.dark-mode .cart-quantity-btn {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
         }
 
         .cart-quantity-input {
@@ -886,6 +1266,14 @@
             text-align: center;
             border: 1px solid #ddd;
             margin: 0 5px;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .cart-quantity-input {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
         }
 
         .cart-item-remove {
@@ -901,9 +1289,48 @@
             border-top: 1px solid #eee;
         }
 
+        body.dark-mode .cart-footer {
+            border-top-color: #444;
+        }
+
         .cart-footer h4 {
             margin-bottom: 15px;
             font-size: 1.2rem;
+        }
+
+        .coupon-section {
+            margin-bottom: 15px;
+        }
+
+        .coupon-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .coupon-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .coupon-input {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        .apply-coupon-btn {
+            padding: 10px 15px;
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
         }
 
         .checkout-btn {
@@ -950,11 +1377,20 @@
             border-bottom: 1px solid #eee;
         }
 
+        body.dark-mode .wishlist-header {
+            border-bottom-color: #444;
+        }
+
         .wishlist-close {
             font-size: 1.5rem;
             background: none;
             border: none;
             cursor: pointer;
+            color: #333;
+        }
+
+        body.dark-mode .wishlist-close {
+            color: #e0e0e0;
         }
 
         .wishlist-items {
@@ -969,6 +1405,11 @@
             margin-bottom: 20px;
             padding-bottom: 20px;
             border-bottom: 1px solid #f0f0f0;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        body.dark-mode .wishlist-item {
+            border-bottom-color: #444;
         }
 
         .wishlist-item img {
@@ -1002,6 +1443,10 @@
         .wishlist-footer {
             padding: 20px;
             border-top: 1px solid #eee;
+        }
+
+        body.dark-mode .wishlist-footer {
+            border-top-color: #444;
         }
 
         .wishlist-footer h4 {
@@ -1071,6 +1516,10 @@
             border-top: 1px solid #eee;
         }
 
+        body.dark-mode .related-products {
+            border-top-color: #444;
+        }
+
         .related-products h3 {
             margin-bottom: 20px;
             font-size: 1.3rem;
@@ -1087,12 +1536,17 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            transition: all 0.3s;
             cursor: pointer;
+        }
+
+        body.dark-mode .related-product {
+            background-color: #2a2a2a;
         }
 
         .related-product:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .related-product img {
@@ -1132,7 +1586,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
+            transition: all 0.3s;
             z-index: 1000;
         }
 
@@ -1143,6 +1597,7 @@
 
         .back-to-top:hover {
             background-color: #6a1b9a;
+            transform: translateY(-5px);
         }
 
         /* Footer */
@@ -1192,6 +1647,858 @@
             color: #aaa;
         }
 
+        /* Mobile Bottom Navigation */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        body.dark-mode .mobile-bottom-nav {
+            background-color: #2a2a2a;
+        }
+
+        .mobile-nav-items {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #777;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .mobile-nav-item {
+            color: #aaa;
+        }
+
+        .mobile-nav-item.active {
+            color: #8a2be2;
+        }
+
+        .mobile-nav-item i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        /* Product Comparison */
+        .compare-bar {
+            position: fixed;
+            bottom: 70px;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-out;
+            z-index: 999;
+        }
+
+        body.dark-mode .compare-bar {
+            background-color: #2a2a2a;
+        }
+
+        .compare-bar.active {
+            transform: translateY(0);
+        }
+
+        .compare-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .compare-products {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .compare-product {
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .compare-product img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+
+        .compare-product h4 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .compare-product button {
+            background: none;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+        }
+
+        .compare-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .compare-btn {
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .compare-btn:hover {
+            background-color: #6a1b9a;
+        }
+
+        /* Product Reviews */
+        .product-reviews {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        body.dark-mode .product-reviews {
+            border-top-color: #444;
+        }
+
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .reviews-summary {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .average-rating {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8a2be2;
+        }
+
+        .rating-distribution {
+            flex-grow: 1;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .rating-bar-label {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .rating-bar-container {
+            flex-grow: 1;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .rating-bar-container {
+            background-color: #444;
+        }
+
+        .rating-bar-fill {
+            height: 100%;
+            background-color: #ffc107;
+        }
+
+        .review-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        body.dark-mode .review-item {
+            border-bottom-color: #444;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+
+        body.dark-mode .reviewer-avatar {
+            background-color: #444;
+            color: #aaa;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+        }
+
+        .review-date {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        body.dark-mode .review-date {
+            color: #aaa;
+        }
+
+        .review-rating {
+            color: #ffc107;
+        }
+
+        .review-content {
+            margin-bottom: 10px;
+        }
+
+        .review-images {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .review-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .review-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .review-action {
+            background: none;
+            border: none;
+            color: #777;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        body.dark-mode .review-action {
+            color: #aaa;
+        }
+
+        .review-action:hover {
+            color: #8a2be2;
+        }
+
+        .add-review-btn {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .add-review-btn {
+            background-color: #333;
+            color: #e0e0e0;
+        }
+
+        .add-review-btn:hover {
+            background-color: #8a2be2;
+            color: white;
+        }
+
+        /* Image Zoom */
+        .image-zoom-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-zoom-lens {
+            position: absolute;
+            border: 2px solid #8a2be2;
+            width: 100px;
+            height: 100px;
+            display: none;
+            pointer-events: none;
+        }
+
+        .image-zoom-result {
+            position: absolute;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ddd;
+            background-color: white;
+            display: none;
+            z-index: 10;
+        }
+
+        body.dark-mode .image-zoom-result {
+            background-color: #333;
+            border-color: #555;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 5px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #333;
+        }
+
+        body.dark-mode .page-btn {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        .page-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        body.dark-mode .page-btn:hover {
+            background-color: #444;
+        }
+
+        .page-btn.active {
+            background-color: #8a2be2;
+            color: white;
+            border-color: #8a2be2;
+        }
+
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #8a2be2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .chat-button:hover {
+            background-color: #6a1b9a;
+            transform: scale(1.1);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        body.dark-mode .chat-window {
+            background-color: #2a2a2a;
+        }
+
+        .chat-window.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background-color: #8a2be2;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .chat-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        body.dark-mode .chat-avatar {
+            background-color: #444;
+            color: #aaa;
+        }
+
+        .chat-bubble {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            background-color: #f0f0f0;
+        }
+
+        body.dark-mode .chat-bubble {
+            background-color: #444;
+        }
+
+        .chat-message.user .chat-bubble {
+            background-color: #8a2be2;
+            color: white;
+        }
+
+        .chat-input-container {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        body.dark-mode .chat-input-container {
+            border-top-color: #444;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .chat-input {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: fixed;
+            top: 80px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .language-button {
+            padding: 8px 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .language-button {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 5px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: none;
+        }
+
+        body.dark-mode .language-dropdown {
+            background-color: #333;
+        }
+
+        .language-dropdown.active {
+            display: block;
+        }
+
+        .language-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .language-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        body.dark-mode .language-option:hover {
+            background-color: #444;
+        }
+
+        /* Virtual Try-On */
+        .virtual-try-on {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .virtual-try-on.active {
+            display: flex;
+        }
+
+        .try-on-container {
+            background-color: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        body.dark-mode .try-on-container {
+            background-color: #2a2a2a;
+        }
+
+        .try-on-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .try-on-header {
+            border-bottom-color: #444;
+        }
+
+        .try-on-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        body.dark-mode .try-on-close {
+            color: #e0e0e0;
+        }
+
+        .try-on-content {
+            flex-grow: 1;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .try-on-camera {
+            flex: 1;
+            background-color: #000;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .try-on-options {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .try-on-option {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .try-on-option {
+            background-color: #333;
+        }
+
+        .try-on-option:hover {
+            background-color: #8a2be2;
+            color: white;
+        }
+
+        /* Order Tracking */
+        .order-tracking {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .order-tracking.active {
+            display: flex;
+        }
+
+        .tracking-container {
+            background-color: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80%;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        body.dark-mode .tracking-container {
+            background-color: #2a2a2a;
+        }
+
+        .tracking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tracking-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        body.dark-mode .tracking-close {
+            color: #e0e0e0;
+        }
+
+        .tracking-input-group {
+            margin-bottom: 20px;
+        }
+
+        .tracking-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .tracking-input {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        .track-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .tracking-result {
+            margin-top: 20px;
+        }
+
+        .tracking-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .tracking-timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #ddd;
+        }
+
+        body.dark-mode .tracking-timeline::before {
+            background-color: #555;
+        }
+
+        .tracking-step {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .tracking-step::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #8a2be2;
+        }
+
+        .tracking-step.completed::before {
+            background-color: #2ecc71;
+        }
+
+        .tracking-date {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        body.dark-mode .tracking-date {
+            color: #aaa;
+        }
+
+        .tracking-status {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .tracking-location {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        body.dark-mode .tracking-location {
+            color: #ccc;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .container {
@@ -1211,6 +2518,10 @@
 
             .carousel-container {
                 height: 300px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -1258,12 +2569,38 @@
                 width: 100%;
                 right: -100%;
             }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-bottom-nav {
+                display: block;
+            }
+
+            .compare-bar {
+                bottom: 60px;
+            }
+
+            .chat-window {
+                width: 90%;
+                right: 5%;
+            }
+
+            .language-selector {
+                top: auto;
+                bottom: 80px;
+                right: 10px;
+            }
         }
 </style>
     <!-- Loading Screen -->
     <div class="loader-container">
         <div class="loader"></div>
-        <p>Iltimos, kuting...</p>
+        <p class="loader-text">Iltimos, kuting...</p>
+        <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+        </div>
     </div>
 
     <!-- Header -->
@@ -1273,12 +2610,13 @@
                 <span>📍 Andijon</span>
             </div>
             <div class="logo">
-                <h1>Izmir Parfume Shop</h1>
+                <h1><i class="fas fa-spray-can"></i> Izmir Parfume Shop</h1>
             </div>
             <div class="user-actions">
                 <div class="search-bar">
                     <input type="text" id="searchInput" placeholder="Qidirish...">
                     <i class="fas fa-search"></i>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
                 </div>
                 <div class="action-icon" id="wishlistIcon">
                     <i class="fas fa-heart"></i>
@@ -1287,6 +2625,13 @@
                 <div class="action-icon" id="cartIcon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="action-icon" id="compareIcon">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span class="compare-count" id="compareCount">0</span>
+                </div>
+                <div class="action-icon" id="darkModeToggle">
+                    <i class="fas fa-moon"></i>
                 </div>
                 <div class="mobile-menu-toggle" id="mobileMenuToggle">
                     <i class="fas fa-bars"></i>
@@ -1349,6 +2694,24 @@
                     <option value="channel">Channel</option>
                     <option value="dior">Dior</option>
                     <option value="gucci">Gucci</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sizeFilter">O'lcham</label>
+                <select id="sizeFilter">
+                    <option value="all">Barchasi</option>
+                    <option value="50ml">50ml</option>
+                    <option value="100ml">100ml</option>
+                    <option value="150ml">150ml</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="colorFilter">Rang</label>
+                <select id="colorFilter">
+                    <option value="all">Barchasi</option>
+                    <option value="gold">Oltin</option>
+                    <option value="silver">Kumush</option>
+                    <option value="rose">Rose</option>
                 </select>
             </div>
         </aside>
@@ -1480,6 +2843,114 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Product Reviews -->
+                    <div class="product-reviews">
+                        <div class="reviews-header">
+                            <h3>Mijozlar sharhlari</h3>
+                            <button class="add-review-btn">Sharh qoldirish</button>
+                        </div>
+                        <div class="reviews-summary">
+                            <div class="average-rating">4.5</div>
+                            <div class="rating-distribution">
+                                <div class="rating-bar">
+                                    <span class="rating-bar-label">5</span>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar-fill" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-bar-label">4</span>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar-fill" style="width: 25%"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-bar-label">3</span>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar-fill" style="width: 10%"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-bar-label">2</span>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar-fill" style="width: 3%"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-bar-label">1</span>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar-fill" style="width: 2%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reviews-list" id="reviewsList">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">JD</div>
+                                        <div>
+                                            <div class="reviewer-name">John Doe</div>
+                                            <div class="review-date">2023-10-15</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-content">
+                                    Bu mahsulot juda yaxshi. Sifati yuqori, narxi arzon. Tavsiya etaman!
+                                </div>
+                                <div class="review-images">
+                                    <img src="https://picsum.photos/seed/review1/80/80.jpg" alt="Review image" class="review-image">
+                                    <img src="https://picsum.photos/seed/review2/80/80.jpg" alt="Review image" class="review-image">
+                                </div>
+                                <div class="review-actions">
+                                    <button class="review-action">
+                                        <i class="far fa-thumbs-up"></i> Foydali (12)
+                                    </button>
+                                    <button class="review-action">
+                                        <i class="far fa-comment"></i> Javob berish
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">AS</div>
+                                        <div>
+                                            <div class="reviewer-name">Alice Smith</div>
+                                            <div class="review-date">2023-10-10</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-content">
+                                    Mahsulot yaxshi, lekin rasmdagidek emas. Rangi biroz farq qiladi.
+                                </div>
+                                <div class="review-actions">
+                                    <button class="review-action">
+                                        <i class="far fa-thumbs-up"></i> Foydali (5)
+                                    </button>
+                                    <button class="review-action">
+                                        <i class="far fa-comment"></i> Javob berish
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="related-products">
                         <h3>O'xshash mahsulotlar</h3>
                         <div class="related-grid" id="relatedGrid">
@@ -1501,6 +2972,13 @@
             <!-- Savat mahsulotlari JS orqali shu yerga qo'yiladi -->
         </div>
         <div class="cart-footer">
+            <div class="coupon-section">
+                <h4>Kupon kodi</h4>
+                <div class="coupon-input-group">
+                    <input type="text" class="coupon-input" id="couponInput" placeholder="Kupon kodini kiriting">
+                    <button class="apply-coupon-btn" id="applyCouponBtn">Qo'llash</button>
+                </div>
+            </div>
             <h4>Jami: <span id="cartTotal">0</span> so'm</h4>
             <button class="checkout-btn">Buyurtma berish</button>
         </div>
@@ -1520,6 +2998,123 @@
         </div>
     </div>
 
+    <!-- Product Comparison Bar -->
+    <div class="compare-bar" id="compareBar">
+        <div class="compare-header">
+            <h3>Taqqoslash (<span id="compareCountBar">0</span>)</h3>
+            <button id="clearCompare">Tozalash</button>
+        </div>
+        <div class="compare-products" id="compareProducts">
+            <!-- Comparison products will be added here -->
+        </div>
+        <div class="compare-actions">
+            <button class="compare-btn" id="compareBtn">Taqqoslash</button>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-button" id="chatButton">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h4>Online Chat</h4>
+                <button class="chat-close" id="chatClose">&times;</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message">
+                    <div class="chat-avatar">CS</div>
+                    <div class="chat-bubble">
+                        Assalomu alaykum! Qanday yordam bera olaman?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Xabaringizni yozing...">
+                <button class="chat-send" id="chatSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <div class="language-button" id="languageButton">
+            <i class="fas fa-globe"></i>
+            <span id="currentLang">UZ</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="language-dropdown" id="languageDropdown">
+            <div class="language-option" data-lang="uz">
+                <span>🇺🇿</span> O'zbekcha
+            </div>
+            <div class="language-option" data-lang="ru">
+                <span>🇷🇺</span> Русский
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Try-On -->
+    <div class="virtual-try-on" id="virtualTryOn">
+        <div class="try-on-container">
+            <div class="try-on-header">
+                <h3>Virtual Sinov</h3>
+                <button class="try-on-close" id="tryOnClose">&times;</button>
+            </div>
+            <div class="try-on-content">
+                <div class="try-on-camera">
+                    <i class="fas fa-camera"></i> Kamerani yoqing
+                </div>
+                <div class="try-on-options">
+                    <div class="try-on-option">Diadema</div>
+                    <div class="try-on-option">Sirg'a</div>
+                    <div class="try-on-option">Bo'yinbaq</div>
+                    <div class="try-on-option">Bilag'uzuk</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Tracking -->
+    <div class="order-tracking" id="orderTracking">
+        <div class="tracking-container">
+            <div class="tracking-header">
+                <h3>Buyurtmani kuzatish</h3>
+                <button class="tracking-close" id="trackingClose">&times;</button>
+            </div>
+            <div class="tracking-input-group">
+                <input type="text" class="tracking-input" id="trackingInput" placeholder="Buyurtma raqamini kiriting">
+                <button class="track-btn" id="trackBtn">Kuzatish</button>
+            </div>
+            <div class="tracking-result" id="trackingResult">
+                <div class="tracking-timeline">
+                    <div class="tracking-step completed">
+                        <div class="tracking-date">2023-10-15 10:30</div>
+                        <div class="tracking-status">Buyurtma qabul qilindi</div>
+                        <div class="tracking-location">Andijon</div>
+                    </div>
+                    <div class="tracking-step completed">
+                        <div class="tracking-date">2023-10-15 14:20</div>
+                        <div class="tracking-status">Buyurtma jo'natildi</div>
+                        <div class="tracking-location">Andijon</div>
+                    </div>
+                    <div class="tracking-step">
+                        <div class="tracking-date">2023-10-16 09:15</div>
+                        <div class="tracking-status">Yo'lda</div>
+                        <div class="tracking-location">Toshkent</div>
+                    </div>
+                    <div class="tracking-step">
+                        <div class="tracking-date">--</div>
+                        <div class="tracking-status">Yetkaziladi</div>
+                        <div class="tracking-location">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Notification Toast -->
     <div class="notification-toast" id="notificationToast">
         <div class="notification-icon">
@@ -1535,6 +3130,32 @@
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-nav-items">
+            <a href="#" class="mobile-nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Bosh sahifa</span>
+            </a>
+            <a href="#" class="mobile-nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Kategoriyalar</span>
+            </a>
+            <a href="#" class="mobile-nav-item">
+                <i class="fas fa-search"></i>
+                <span>Qidirish</span>
+            </a>
+            <a href="#" class="mobile-nav-item" id="mobileWishlistIcon">
+                <i class="fas fa-heart"></i>
+                <span>Sevimlilar</span>
+            </a>
+            <a href="#" class="mobile-nav-item" id="mobileCartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Savat</span>
+            </a>
+        </div>
+    </nav>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -1610,7 +3231,10 @@
             const priceFilter = document.getElementById('priceFilter');
             const priceValue = document.getElementById('priceValue');
             const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
             const brandFilter = document.getElementById('brandFilter');
+            const sizeFilter = document.getElementById('sizeFilter');
+            const colorFilter = document.getElementById('colorFilter');
             const sortSelect = document.getElementById('sortSelect');
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const mainNav = document.getElementById('mainNav');
@@ -1642,6 +3266,9 @@
             const cartItemsContainer = document.getElementById('cartItems');
             const cartCount = document.getElementById('cartCount');
             const cartTotal = document.getElementById('cartTotal');
+            const mobileCartIcon = document.getElementById('mobileCartIcon');
+            const couponInput = document.getElementById('couponInput');
+            const applyCouponBtn = document.getElementById('applyCouponBtn');
 
             // Wishlist elementlari
             const wishlistIcon = document.getElementById('wishlistIcon');
@@ -1649,6 +3276,16 @@
             const wishlistClose = document.getElementById('wishlistClose');
             const wishlistItemsContainer = document.getElementById('wishlistItems');
             const wishlistCount = document.getElementById('wishlistCount');
+            const mobileWishlistIcon = document.getElementById('mobileWishlistIcon');
+
+            // Compare elementlari
+            const compareIcon = document.getElementById('compareIcon');
+            const compareBar = document.getElementById('compareBar');
+            const compareCount = document.getElementById('compareCount');
+            const compareCountBar = document.getElementById('compareCountBar');
+            const compareProducts = document.getElementById('compareProducts');
+            const clearCompare = document.getElementById('clearCompare');
+            const compareBtn = document.getElementById('compareBtn');
 
             // Notification elementlari
             const notificationToast = document.getElementById('notificationToast');
@@ -1661,15 +3298,56 @@
             // View options
             const viewOptions = document.querySelectorAll('.view-option');
 
+            // Pagination
+            const pagination = document.getElementById('pagination');
+            let currentPage = 1;
+            const productsPerPage = 8;
+
+            // Dark mode
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            // Chat widget
+            const chatButton = document.getElementById('chatButton');
+            const chatWindow = document.getElementById('chatWindow');
+            const chatClose = document.getElementById('chatClose');
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const chatSend = document.getElementById('chatSend');
+
+            // Language selector
+            const languageButton = document.getElementById('languageButton');
+            const languageDropdown = document.getElementById('languageDropdown');
+            const currentLang = document.getElementById('currentLang');
+
+            // Virtual try-on
+            const virtualTryOn = document.getElementById('virtualTryOn');
+            const tryOnClose = document.getElementById('tryOnClose');
+
+            // Order tracking
+            const orderTracking = document.getElementById('orderTracking');
+            const trackingClose = document.getElementById('trackingClose');
+            const trackingInput = document.getElementById('trackingInput');
+            const trackBtn = document.getElementById('trackBtn');
+
             // --- Savat mantiqi ---
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            let compareList = JSON.parse(localStorage.getItem('compareList')) || [];
             let currentSlide = 0;
             let currentProduct = null;
             let selectedOptions = {
                 size: '50ml',
                 color: 'gold'
             };
+            let couponDiscount = 0;
+            let stockNotifications = JSON.parse(localStorage.getItem('stockNotifications')) || [];
+
+            // Initialize dark mode
+            if (localStorage.getItem('darkMode') === 'true') {
+                body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
 
             const updateCartUI = () => {
                 cartItemsContainer.innerHTML = '';
@@ -1699,6 +3377,11 @@
                         total += item.price * (item.quantity || 1);
                         itemCount += (item.quantity || 1);
                     });
+                }
+
+                // Apply coupon discount
+                if (couponDiscount > 0) {
+                    total = total * (1 - couponDiscount / 100);
                 }
 
                 cartCount.textContent = itemCount;
@@ -1767,6 +3450,9 @@
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartUI();
                     showNotification('Mahsulot savatga qo\'shildi');
+                    
+                    // Add flying animation
+                    animateProductToCart(productId);
                 }
             };
 
@@ -1824,6 +3510,84 @@
                 }
             };
 
+            // --- Compare mantiqi ---
+            const updateCompareUI = () => {
+                compareProducts.innerHTML = '';
+                let itemCount = compareList.length;
+
+                if (compareList.length === 0) {
+                    compareBar.classList.remove('active');
+                } else {
+                    compareBar.classList.add('active');
+                    
+                    compareList.forEach(item => {
+                        const compareProductEl = document.createElement('div');
+                        compareProductEl.className = 'compare-product';
+                        compareProductEl.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}">
+                            <h4>${item.name}</h4>
+                            <button class="remove-compare" data-id="${item.id}">&times;</button>
+                        `;
+                        compareProducts.appendChild(compareProductEl);
+                    });
+                }
+
+                compareCount.textContent = itemCount;
+                compareCountBar.textContent = itemCount;
+
+                // Add event listeners to compare item buttons
+                document.querySelectorAll('.remove-compare').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const productId = parseInt(e.target.dataset.id);
+                        compareList = compareList.filter(item => item.id !== productId);
+                        localStorage.setItem('compareList', JSON.stringify(compareList));
+                        updateCompareUI();
+                        showNotification('Mahsulot taqqoslash ro\'yxatidan o\'chirildi');
+                    });
+                });
+            };
+
+            const addToCompare = (productId) => {
+                const productToAdd = products.find(p => p.id === productId);
+                if (productToAdd) {
+                    // Check if product already in compare list
+                    const existingItem = compareList.find(item => item.id === productId);
+                    if (!existingItem) {
+                        // Limit to 4 products for comparison
+                        if (compareList.length < 4) {
+                            compareList.push(productToAdd);
+                            localStorage.setItem('compareList', JSON.stringify(compareList));
+                            updateCompareUI();
+                            showNotification('Mahsulot taqqoslash ro\'yxatiga qo\'shildi');
+                        } else {
+                            showNotification('Taqqoslash uchun maksimal 4 ta mahsulot tanlash mumkin');
+                        }
+                    } else {
+                        showNotification('Mahsulot allaqachon taqqoslash ro\'yxatida');
+                    }
+                }
+            };
+
+            // --- Stock notification mantiqi ---
+            const addStockNotification = (productId) => {
+                const product = products.find(p => p.id === productId);
+                if (product) {
+                    // Check if already in notifications
+                    const existingNotification = stockNotifications.find(n => n.id === productId);
+                    if (!existingNotification) {
+                        stockNotifications.push({
+                            id: productId,
+                            name: product.name,
+                            email: '' // In real app, user would provide email
+                        });
+                        localStorage.setItem('stockNotifications', JSON.stringify(stockNotifications));
+                        showNotification(`${product.name} mahsuloti qayta sotuvga chiqqanda xabardor bo'lasiz`);
+                    } else {
+                        showNotification('Bu mahsulot uchun allaqachon xabardorlik so\'ralgan');
+                    }
+                }
+            };
+
             // --- Notification mantiqi ---
             const showNotification = (message) => {
                 notificationMessage.textContent = message;
@@ -1835,21 +3599,30 @@
             };
 
             // --- Mahsulotlarni chiqarish funktsiyasi ---
-            const displayProducts = (productsToShow) => {
+            const displayProducts = (productsToShow, page = 1) => {
                 productGrid.innerHTML = '';
+                
+                // Calculate pagination
+                const totalPages = Math.ceil(productsToShow.length / productsPerPage);
+                const startIndex = (page - 1) * productsPerPage;
+                const endIndex = startIndex + productsPerPage;
+                const paginatedProducts = productsToShow.slice(startIndex, endIndex);
+                
                 resultCount.textContent = productsToShow.length;
 
-                if (productsToShow.length === 0) {
+                if (paginatedProducts.length === 0) {
                     productGrid.innerHTML = '<p>Afsuski, hech narsa topilmadi.</p>';
                     return;
                 }
 
-                productsToShow.forEach(product => {
+                paginatedProducts.forEach(product => {
                     const card = document.createElement('div');
                     card.className = 'product-card';
                     
                     // Check if product is in wishlist
                     const inWishlist = wishlist.some(item => item.id === product.id);
+                    // Check if product is in compare list
+                    const inCompare = compareList.some(item => item.id === product.id);
                     
                     card.innerHTML = `
                         ${product.badge ? `<div class="product-badge ${product.badge}">${product.badge === 'new' ? 'Yangi' : product.badge === 'sale' ? 'Chegirma' : product.badge === 'popular' ? 'Mashhur' : 'Ekskluziv'}</div>` : ''}
@@ -1860,11 +3633,19 @@
                             <div class="action-btn quick-view-btn" data-id="${product.id}">
                                 <i class="fas fa-eye"></i>
                             </div>
-                            <div class="action-btn compare-btn" data-id="${product.id}">
+                            <div class="action-btn compare-btn ${inCompare ? 'active' : ''}" data-id="${product.id}">
                                 <i class="fas fa-exchange-alt"></i>
                             </div>
                         </div>
-                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-image-container image-zoom-container">
+                            <img src="${product.image}" alt="${product.name}" data-id="${product.id}">
+                            <div class="product-video-btn" data-id="${product.id}">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="product-quick-view" data-id="${product.id}">
+                                Tez ko'rish
+                            </div>
+                        </div>
                         <div class="product-info">
                             <div class="product-category">${product.category === 'parfume' ? 'Parfumeriya' : product.category === 'bujiteriya' ? 'Bujuteriya' : 'Aksessuar'}</div>
                             <h3>${product.name}</h3>
@@ -1881,9 +3662,13 @@
                             <div class="product-stock ${product.stock === 0 ? 'out-of-stock' : product.stock < 5 ? 'low-stock' : 'in-stock'}">
                                 ${product.stock === 0 ? 'Omborda yo\'q' : product.stock < 5 ? `Omborda faqat ${product.stock} ta qoldi` : 'Omborda bor'}
                             </div>
-                            <button class="add-to-cart-btn" data-id="${product.id}" ${product.stock === 0 ? 'disabled' : ''}>
-                                ${product.stock === 0 ? 'Omborda yo\'q' : 'Savatga qo\'shish'}
-                            </button>
+                            <div class="product-actions-row">
+                                ${product.stock === 0 ? 
+                                    `<button class="stock-notify-btn" data-id="${product.id}">Xabardor bo'lish</button>` :
+                                    `<button class="add-to-cart-btn" data-id="${product.id}">Savatga qo'shish</button>
+                                    <button class="quick-buy-btn" data-id="${product.id}">Tez sotib olish</button>`
+                                }
+                            </div>
                         </div>
                     `;
                     productGrid.appendChild(card);
@@ -1895,6 +3680,24 @@
                         e.stopPropagation();
                         const productId = parseInt(btn.dataset.id);
                         addToCart(productId);
+                    });
+                });
+
+                document.querySelectorAll('.quick-buy-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const productId = parseInt(btn.dataset.id);
+                        addToCart(productId);
+                        showNotification('Tez sotib olish: Mahsulot savatga qo\'shildi');
+                        cartSidebar.classList.add('open');
+                    });
+                });
+
+                document.querySelectorAll('.stock-notify-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const productId = parseInt(btn.dataset.id);
+                        addStockNotification(productId);
                     });
                 });
 
@@ -1918,6 +3721,21 @@
                     });
                 });
 
+                document.querySelectorAll('.compare-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const productId = parseInt(btn.dataset.id);
+                        addToCompare(productId);
+                        
+                        // Update button state
+                        if (!btn.classList.contains('active')) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                });
+
                 document.querySelectorAll('.quick-view-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation();
@@ -1927,23 +3745,188 @@
                     });
                 });
 
-                document.querySelectorAll('.compare-btn').forEach(btn => {
+                document.querySelectorAll('.product-video-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation();
                         const productId = parseInt(btn.dataset.id);
-                        showNotification('Taqqoslash funksiyasi tez orada qo\'shiladi');
+                        showNotification('Video ko\'rish funksiyasi tez orada qo\'shiladi');
+                    });
+                });
+
+                document.querySelectorAll('.product-quick-view').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const productId = parseInt(btn.dataset.id);
+                        const product = products.find(p => p.id === productId);
+                        openProductModal(product);
                     });
                 });
 
                 document.querySelectorAll('.product-card').forEach(card => {
                     card.addEventListener('click', (e) => {
-                        if (e.target.closest('.product-actions') || e.target.classList.contains('add-to-cart-btn')) return;
+                        if (e.target.closest('.product-actions') || 
+                            e.target.classList.contains('add-to-cart-btn') || 
+                            e.target.classList.contains('quick-buy-btn') || 
+                            e.target.classList.contains('stock-notify-btn') ||
+                            e.target.classList.contains('product-quick-view')) return;
                         
-                        const productId = parseInt(card.querySelector('.add-to-cart-btn').dataset.id);
+                        const productId = parseInt(card.querySelector('.add-to-cart-btn, .stock-notify-btn').dataset.id);
                         const product = products.find(p => p.id === productId);
                         openProductModal(product);
                     });
                 });
+
+                // Add image zoom functionality
+                document.querySelectorAll('.image-zoom-container img').forEach(img => {
+                    img.addEventListener('mousemove', (e) => {
+                        imageZoom(e, img);
+                    });
+                    
+                    img.addEventListener('mouseleave', () => {
+                        document.getElementById('imageZoomResult').style.display = 'none';
+                    });
+                });
+
+                // Update pagination
+                updatePagination(totalPages, page);
+            };
+
+            // --- Pagination mantiqi ---
+            const updatePagination = (totalPages, currentPage) => {
+                pagination.innerHTML = '';
+                
+                if (totalPages <= 1) return;
+                
+                // Previous button
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'page-btn';
+                prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                prevBtn.disabled = currentPage === 1;
+                prevBtn.classList.toggle('disabled', currentPage === 1);
+                prevBtn.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        filterAndSearchProducts(currentPage - 1);
+                    }
+                });
+                pagination.appendChild(prevBtn);
+                
+                // Page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    // Show first page, last page, current page, and pages around current page
+                    if (
+                        i === 1 || 
+                        i === totalPages || 
+                        i === currentPage || 
+                        (i >= currentPage - 1 && i <= currentPage + 1)
+                    ) {
+                        const pageBtn = document.createElement('button');
+                        pageBtn.className = 'page-btn';
+                        pageBtn.textContent = i;
+                        pageBtn.classList.toggle('active', i === currentPage);
+                        pageBtn.addEventListener('click', () => {
+                            filterAndSearchProducts(i);
+                        });
+                        pagination.appendChild(pageBtn);
+                    } else if (
+                        i === currentPage - 2 || 
+                        i === currentPage + 2
+                    ) {
+                        const dots = document.createElement('span');
+                        dots.textContent = '...';
+                        dots.style.padding = '0 10px';
+                        pagination.appendChild(dots);
+                    }
+                }
+                
+                // Next button
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'page-btn';
+                nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                nextBtn.disabled = currentPage === totalPages;
+                nextBtn.classList.toggle('disabled', currentPage === totalPages);
+                nextBtn.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        filterAndSearchProducts(currentPage + 1);
+                    }
+                });
+                pagination.appendChild(nextBtn);
+            };
+
+            // --- Image zoom mantiqi ---
+            const imageZoom = (e, img) => {
+                // Create zoom result div if it doesn't exist
+                let zoomResult = document.getElementById('imageZoomResult');
+                if (!zoomResult) {
+                    zoomResult = document.createElement('div');
+                    zoomResult.id = 'imageZoomResult';
+                    zoomResult.className = 'image-zoom-result';
+                    document.body.appendChild(zoomResult);
+                }
+                
+                // Create lens div if it doesn't exist
+                let lens = document.getElementById('imageZoomLens');
+                if (!lens) {
+                    lens = document.createElement('div');
+                    lens.id = 'imageZoomLens';
+                    lens.className = 'image-zoom-lens';
+                    img.parentElement.appendChild(lens);
+                }
+                
+                // Get position of the image
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Set lens position
+                lens.style.left = (x - lens.offsetWidth / 2) + 'px';
+                lens.style.top = (y - lens.offsetHeight / 2) + 'px';
+                lens.style.display = 'block';
+                
+                // Set zoom result position
+                zoomResult.style.left = (rect.right + 10) + 'px';
+                zoomResult.style.top = rect.top + 'px';
+                zoomResult.style.display = 'block';
+                
+                // Set background image for zoom result
+                const zoomLevel = 2;
+                zoomResult.style.backgroundImage = `url('${img.src}')`;
+                zoomResult.style.backgroundSize = (img.width * zoomLevel) + 'px ' + (img.height * zoomLevel) + 'px';
+                zoomResult.style.backgroundPosition = '-' + (x * zoomLevel - zoomResult.offsetWidth / 2) + 'px -' + (y * zoomLevel - zoomResult.offsetHeight / 2) + 'px';
+            };
+
+            // --- Search suggestions mantiqi ---
+            const updateSearchSuggestions = (searchTerm) => {
+                searchSuggestions.innerHTML = '';
+                
+                if (searchTerm.length < 2) {
+                    searchSuggestions.classList.remove('active');
+                    return;
+                }
+                
+                const matchingProducts = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ).slice(0, 5);
+                
+                if (matchingProducts.length > 0) {
+                    searchSuggestions.classList.add('active');
+                    
+                    matchingProducts.forEach(product => {
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.className = 'suggestion-item';
+                        suggestionItem.innerHTML = `
+                            <img src="${product.image}" alt="${product.name}" style="width: 30px; height: 30px; object-fit: cover; border-radius: 4px; margin-right: 10px; vertical-align: middle;">
+                            ${product.name}
+                        `;
+                        suggestionItem.addEventListener('click', () => {
+                            searchInput.value = product.name;
+                            searchSuggestions.classList.remove('active');
+                            filterAndSearchProducts();
+                        });
+                        searchSuggestions.appendChild(suggestionItem);
+                    });
+                } else {
+                    searchSuggestions.classList.remove('active');
+                }
             };
 
             // --- Modal oynasi mantiqi ---
@@ -2069,11 +4052,14 @@
             };
 
             // --- Filtrlash va qidirish funktsiyasi ---
-            const filterAndSearchProducts = () => {
+            const filterAndSearchProducts = (page = 1) => {
+                currentPage = page;
                 const selectedCategory = categoryFilter.value;
                 const maxPrice = parseInt(priceFilter.value);
                 const searchTerm = searchInput.value.toLowerCase();
                 const selectedBrand = brandFilter.value;
+                const selectedSize = sizeFilter.value;
+                const selectedColor = colorFilter.value;
                 const selectedSort = sortSelect.value;
                 
                 // Get active tags
@@ -2086,6 +4072,8 @@
                     const priceMatch = product.price <= maxPrice;
                     const searchMatch = product.name.toLowerCase().includes(searchTerm);
                     const brandMatch = selectedBrand === 'all' || product.brand === selectedBrand;
+                    const sizeMatch = selectedSize === 'all' || product.size === selectedSize;
+                    const colorMatch = selectedColor === 'all' || product.color === selectedColor;
                     
                     let tagMatch = true;
                     if (activeTags.length > 0) {
@@ -2098,7 +4086,7 @@
                         });
                     }
                     
-                    return categoryMatch && priceMatch && searchMatch && brandMatch && tagMatch;
+                    return categoryMatch && priceMatch && searchMatch && brandMatch && sizeMatch && colorMatch && tagMatch;
                 });
                 
                 // Sort products
@@ -2117,26 +4105,38 @@
                         break;
                 }
                 
-                displayProducts(filtered);
+                displayProducts(filtered, page);
             };
             
             // --- Event Listenerlar ---
-            categoryFilter.addEventListener('change', filterAndSearchProducts);
-            brandFilter.addEventListener('change', filterAndSearchProducts);
-            sortSelect.addEventListener('change', filterAndSearchProducts);
+            categoryFilter.addEventListener('change', () => filterAndSearchProducts(1));
+            brandFilter.addEventListener('change', () => filterAndSearchProducts(1));
+            sizeFilter.addEventListener('change', () => filterAndSearchProducts(1));
+            colorFilter.addEventListener('change', () => filterAndSearchProducts(1));
+            sortSelect.addEventListener('change', () => filterAndSearchProducts(1));
             
             priceFilter.addEventListener('input', () => {
                 priceValue.textContent = parseInt(priceFilter.value).toLocaleString('uz-UZ');
-                filterAndSearchProducts();
+                filterAndSearchProducts(1);
             });
             
-            searchInput.addEventListener('input', filterAndSearchProducts);
+            searchInput.addEventListener('input', (e) => {
+                updateSearchSuggestions(e.target.value);
+                filterAndSearchProducts(1);
+            });
+            
+            // Hide search suggestions when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                    searchSuggestions.classList.remove('active');
+                }
+            });
             
             // Filter tags
             filterTags.forEach(tag => {
                 tag.addEventListener('click', () => {
                     tag.classList.toggle('active');
-                    filterAndSearchProducts();
+                    filterAndSearchProducts(1);
                 });
             });
             
@@ -2150,7 +4150,7 @@
                     if (option.dataset.view === 'list') {
                         productGrid.style.gridTemplateColumns = '1fr';
                     } else {
-                        productGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
+                        productGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
                     }
                 });
             });
@@ -2266,12 +4266,40 @@
                 wishlistSidebar.classList.remove('open');
             });
             
+            mobileCartIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                cartSidebar.classList.add('open');
+                wishlistSidebar.classList.remove('open');
+            });
+            
             cartClose.addEventListener('click', () => {
                 cartSidebar.classList.remove('open');
             });
             
+            // Coupon functionality
+            applyCouponBtn.addEventListener('click', () => {
+                const couponCode = couponInput.value.trim().toUpperCase();
+                if (couponCode === 'IZMIR10') {
+                    couponDiscount = 10;
+                    updateCartUI();
+                    showNotification('Kupon qo\'llandi: 10% chegirma');
+                } else if (couponCode === 'IZMIR20') {
+                    couponDiscount = 20;
+                    updateCartUI();
+                    showNotification('Kupon qo\'llandi: 20% chegirma');
+                } else {
+                    showNotification('Noto\'g\'ri kupon kodi');
+                }
+            });
+            
             // --- Wishlist paneli mantiqi ---
             wishlistIcon.addEventListener('click', () => {
+                wishlistSidebar.classList.add('open');
+                cartSidebar.classList.remove('open');
+            });
+            
+            mobileWishlistIcon.addEventListener('click', (e) => {
+                e.preventDefault();
                 wishlistSidebar.classList.add('open');
                 cartSidebar.classList.remove('open');
             });
@@ -2289,6 +4317,140 @@
                 localStorage.setItem('wishlist', JSON.stringify(wishlist));
                 updateWishlistUI();
                 showNotification('Barcha sevimli mahsulotlar savatga qo\'shildi');
+            });
+            
+            // --- Compare paneli mantiqi ---
+            compareIcon.addEventListener('click', () => {
+                if (compareList.length > 0) {
+                    compareBar.classList.toggle('active');
+                } else {
+                    showNotification('Taqqoslash ro\'yxati bo\'sh');
+                }
+            });
+            
+            clearCompare.addEventListener('click', () => {
+                compareList = [];
+                localStorage.setItem('compareList', JSON.stringify(compareList));
+                updateCompareUI();
+                showNotification('Taqqoslash ro\'yxati tozalandi');
+            });
+            
+            compareBtn.addEventListener('click', () => {
+                if (compareList.length >= 2) {
+                    // In a real app, this would open a comparison page
+                    showNotification('Taqqoslash sahifasi ochilmoqda...');
+                } else {
+                    showNotification('Kamida 2 ta mahsulot tanlang');
+                }
+            });
+            
+            // --- Dark mode toggle ---
+            darkModeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDarkMode = body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+                darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                showNotification(isDarkMode ? 'Tungi rejim yoqildi' : 'Kunduzgi rejim yoqildi');
+            });
+            
+            // --- Chat widget ---
+            chatButton.addEventListener('click', () => {
+                chatWindow.classList.toggle('active');
+            });
+            
+            chatClose.addEventListener('click', () => {
+                chatWindow.classList.remove('active');
+            });
+            
+            chatSend.addEventListener('click', () => {
+                const message = chatInput.value.trim();
+                if (message) {
+                    // Add user message
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'chat-message user';
+                    userMessage.innerHTML = `
+                        <div class="chat-avatar">Siz</div>
+                        <div class="chat-bubble">${message}</div>
+                    `;
+                    chatMessages.appendChild(userMessage);
+                    
+                    // Clear input
+                    chatInput.value = '';
+                    
+                    // Simulate bot response
+                    setTimeout(() => {
+                        const botMessage = document.createElement('div');
+                        botMessage.className = 'chat-message';
+                        botMessage.innerHTML = `
+                            <div class="chat-avatar">CS</div>
+                            <div class="chat-bubble">Tez orada sizga javob beramiz. Iltimos, kuting...</div>
+                        `;
+                        chatMessages.appendChild(botMessage);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1000);
+                    
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            });
+            
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    chatSend.click();
+                }
+            });
+            
+            // --- Language selector ---
+            languageButton.addEventListener('click', () => {
+                languageDropdown.classList.toggle('active');
+            });
+            
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const lang = option.dataset.lang;
+                    currentLang.textContent = lang.toUpperCase();
+                    languageDropdown.classList.remove('active');
+                    showNotification(`Til o'zgartirildi: ${lang === 'uz' ? 'O\'zbekcha' : 'Ruscha'}`);
+                    // In a real app, this would change the language of the entire site
+                });
+            });
+            
+            // Hide language dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageButton.contains(e.target) && !languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('active');
+                }
+            });
+            
+            // --- Virtual try-on ---
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.virtual-try-on-btn')) {
+                    virtualTryOn.classList.add('active');
+                }
+            });
+            
+            tryOnClose.addEventListener('click', () => {
+                virtualTryOn.classList.remove('active');
+            });
+            
+            // --- Order tracking ---
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.track-order-btn')) {
+                    orderTracking.classList.add('active');
+                }
+            });
+            
+            trackingClose.addEventListener('click', () => {
+                orderTracking.classList.remove('active');
+            });
+            
+            trackBtn.addEventListener('click', () => {
+                const trackingNumber = trackingInput.value.trim();
+                if (trackingNumber) {
+                    showNotification(`Buyurtma ${trackingNumber} kuzatilmoqda...`);
+                    // In a real app, this would fetch tracking data from API
+                } else {
+                    showNotification('Iltimos, buyurtma raqamini kiriting');
+                }
             });
             
             // --- Notification close ---
@@ -2317,11 +4479,77 @@
                 });
             });
             
+            // --- Flying animation for add to cart ---
+            const animateProductToCart = (productId) => {
+                const productCard = document.querySelector(`.add-to-cart-btn[data-id="${productId}"], .quick-buy-btn[data-id="${productId}"]`).closest('.product-card');
+                const cartIcon = document.getElementById('cartIcon');
+                
+                if (!productCard || !cartIcon) return;
+                
+                const productImage = productCard.querySelector('img');
+                const cartIconRect = cartIcon.getBoundingClientRect();
+                const productImageRect = productImage.getBoundingClientRect();
+                
+                // Create flying image
+                const flyingImage = productImage.cloneNode(true);
+                flyingImage.style.position = 'fixed';
+                flyingImage.style.zIndex = '9999';
+                flyingImage.style.width = productImageRect.width + 'px';
+                flyingImage.style.height = productImageRect.height + 'px';
+                flyingImage.style.left = productImageRect.left + 'px';
+                flyingImage.style.top = productImageRect.top + 'px';
+                flyingImage.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                flyingImage.style.borderRadius = '50%';
+                
+                document.body.appendChild(flyingImage);
+                
+                // Animate to cart
+                setTimeout(() => {
+                    flyingImage.style.left = cartIconRect.left + 'px';
+                    flyingImage.style.top = cartIconRect.top + 'px';
+                    flyingImage.style.width = '20px';
+                    flyingImage.style.height = '20px';
+                    flyingImage.style.opacity = '0';
+                }, 10);
+                
+                // Remove flying image
+                setTimeout(() => {
+                    document.body.removeChild(flyingImage);
+                }, 800);
+            };
+            
+            // --- Touch gestures for mobile ---
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            const handleSwipe = () => {
+                // Swipe right to open cart
+                if (touchEndX - touchStartX > 50 && touchStartX < 50) {
+                    cartSidebar.classList.add('open');
+                    wishlistSidebar.classList.remove('open');
+                }
+                // Swipe left to open wishlist
+                else if (touchStartX - touchEndX > 50 && touchStartX > window.innerWidth - 50) {
+                    wishlistSidebar.classList.add('open');
+                    cartSidebar.classList.remove('open');
+                }
+            };
+            
             // --- Loading va boshlang'ich sozlamalar ---
             setTimeout(() => {
                 displayProducts(products);
                 updateCartUI();
                 updateWishlistUI();
+                updateCompareUI();
                 loaderContainer.classList.add('hidden');
             }, 2000);
         });
